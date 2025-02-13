@@ -1,18 +1,25 @@
 /* eslint-disable no-undef */
 import express from 'express'
-import dotenv from 'dotenv'
-import cors from 'cors'
+// import dotenv from 'dotenv'
+// import cors from 'cors'
 
 import { MongoClient } from 'mongodb'
 
-dotenv.config()
+import path from 'path'
+import { fileURLToPath } from 'url'
+
+// dotenv.config()
 
 const app = express()
 const PORT = process.env.PORT
 const atlasURI = process.env.ATLAS_URI
 
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
 app.use(express.json())
-app.use(cors())
+app.use(express.static(path.join(__dirname, '../dist')))
+// app.use(cors())
 
 app.get('/api/recipes', async (_, res) => {
   const client = new MongoClient(atlasURI)
