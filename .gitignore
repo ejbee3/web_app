@@ -30,6 +30,5 @@ coverage
 *.tsbuildinfo
 
 .env
-*.json
 .editorconfig
 .gitattributes
